@@ -1,0 +1,19 @@
+apiVersion: v1
+data:
+  allow-snippet-annotations: "true"
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"allow-snippet-annotations":"true"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"controller","app.kubernetes.io/instance":"ingress-nginx","app.kubernetes.io/name":"ingress-nginx","app.kubernetes.io/part-of":"ingress-nginx","app.kubernetes.io/version":"1.5.1"},"name":"ingress-nginx-controller","namespace":"ingress-nginx"}}
+  creationTimestamp: "2022-11-13T23:46:39Z"
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/version: 1.5.1
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+  resourceVersion: "1169"
+  uid: 4d64b59f-0a96-4cac-a922-73a213f8dff6

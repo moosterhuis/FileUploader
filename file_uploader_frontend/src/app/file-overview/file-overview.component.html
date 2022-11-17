@@ -1,0 +1,12 @@
+<div *ngIf="loading">
+	<span>Loading ...</span>
+</div>
+
+<div *ngFor="let file of files">
+    <h2>{{file.name}}</h2>
+    <img id="preciew" alt={{file.name}} width="50" src={{file.url}}/>
+    <p>Type: {{file.type}}</p>
+    <p>Size {{file.size}} bytes</p>
+    <p>ID: {{file.id}}</p>
+    <button (click)="deleteFile(file.id)">delete</button>
+</div>

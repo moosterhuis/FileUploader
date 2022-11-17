@@ -1,0 +1,15 @@
+<h1>File Uploader voor Killian</h1>
+
+<div>
+	<input type="file"
+			(change)="onSelectFile($event)"
+            onchange="document.getElementById('preciew').src = window.URL.createObjectURL(this.files[0])">
+	<button (click)="onUploadFile()">Upload</button>
+</div>
+
+<div *ngIf="loading">
+	<span>Loading ...</span>
+</div>
+
+<img id="preciew" alt="your image" width="100"/>
+
