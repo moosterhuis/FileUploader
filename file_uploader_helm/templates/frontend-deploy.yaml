@@ -17,22 +17,12 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: moosterhuis/file_uploader_frontend:v2
+          image: {{ .Values.frontend_deploy.image }}
           ports:
             - containerPort: 80
           env:
           - name: API_URL
-            value: "http://backend.localdev.me/api/files/"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend-service
-  labels:
-    app: frontend
-spec:
-  selector:
-    app: frontend
-  ports:
-    - port: 80
-      targetPort: 80
+            valueFrom:
+              configMapKeyRef:
+                name: frontend-config
+                key: apiUrl

@@ -1,0 +1,16 @@
+frontend_config:
+  apiUrl: "http://backend.localdev.me/api/files/"
+
+frontend_deploy:
+  image: moosterhuis/file_uploader_frontend:v2
+
+backend_deploy:
+  image: moosterhuis/file_uploader_backend:v1
+
+postgres_config:
+  database: postgres
+  url: jdbc:postgresql://postgres-service:5432/postgres
+
+postgres_secret:
+  username: YWRtaW4=
+  password: YWRtaW4=

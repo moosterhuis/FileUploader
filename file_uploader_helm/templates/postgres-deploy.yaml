@@ -24,17 +24,17 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: db-secret
+                  name: postgres-secret
                   key: username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: db-secret
+                  name: postgres-secret
                   key: password
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
-                  name: db-config
+                  name: postgres-config
                   key: database
           volumeMounts:
             - mountPath: /cache
@@ -43,16 +43,3 @@ spec:
       - name: volume
         persistentVolumeClaim:
           claimName: pv-claim
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-service
-  labels:
-    app: postgres
-spec:
-  selector:
-    app: postgres
-  ports:
-    - port: 5432
-      targetPort: 5432
