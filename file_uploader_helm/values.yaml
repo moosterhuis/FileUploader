@@ -2,7 +2,7 @@ frontend_config:
   apiUrl: "http://backend.localdev.me/api/files/"
 
 frontend_deploy:
-  image: moosterhuis/file_uploader_frontend:v2
+  image: moosterhuis/file_uploader_frontend:v1
 
 backend_deploy:
   image: moosterhuis/file_uploader_backend:v1
