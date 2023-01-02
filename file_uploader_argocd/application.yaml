@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: file_uploader
+  name: file-uploader
   namespace: argocd
 spec:
   project: default
