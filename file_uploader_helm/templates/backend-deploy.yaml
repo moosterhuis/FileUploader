@@ -19,44 +19,44 @@ spec:
       volumes:
       - emptyDir: {}
         name: elastic-apm-agent
-      initContainers:
-      - command:
-        - cp
-        - -v
-        - /usr/agent/elastic-apm-agent.jar
-        - /elastic/apm/agent
-        image: docker.elastic.co/observability/apm-agent-java:1.35.0
-        imagePullPolicy: IfNotPresent
-        name: elastic-java-agent
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /elastic/apm/agent
-          name: elastic-apm-agent
+      # initContainers:
+      # - command:
+      #   - cp
+      #   - -v
+      #   - /usr/agent/elastic-apm-agent.jar
+      #   - /elastic/apm/agent
+      #   image: docker.elastic.co/observability/apm-agent-java:1.35.0
+      #   imagePullPolicy: IfNotPresent
+      #   name: elastic-java-agent
+      #   resources: {}
+      #   terminationMessagePath: /dev/termination-log
+      #   terminationMessagePolicy: File
+      #   volumeMounts:
+      #   - mountPath: /elastic/apm/agent
+      #     name: elastic-apm-agent
       containers:
         - name: backend
           image: {{ .Values.backend_deploy.image }}
           ports:
             - containerPort: 8081
           env:
-            - name: ELASTIC_APM_SERVER_URLS
-              value: http://apm-server-apm-http.elastic:8200
-            - name: ELASTIC_APM_SERVICE_NAME
-              value: test-michiel
-            - name: ELASTIC_APM_APPLICATION_PACKAGES
-              value: com.alfresco,org.alfresco,nl.amsterdam
-            - name: ELASTIC_APM_ENVIRONMENT
-              value: test
-            - name: ELASTIC_APM_LOG_LEVEL
-              value: INFO
-            - name: ELASTIC_APM_SECRET_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  key: secret-token
-                  name: apm-server-apm-token
-            - name: JAVA_TOOL_OPTIONS
-              value: -javaagent:/elastic/apm/agent/elastic-apm-agent.jar
+            # - name: ELASTIC_APM_SERVER_URLS
+            #   value: http://apm-server-apm-http.elastic:8200
+            # - name: ELASTIC_APM_SERVICE_NAME
+            #   value: test-michiel
+            # - name: ELASTIC_APM_APPLICATION_PACKAGES
+            #   value: com.alfresco,org.alfresco,nl.amsterdam
+            # - name: ELASTIC_APM_ENVIRONMENT
+            #   value: test
+            # - name: ELASTIC_APM_LOG_LEVEL
+            #   value: INFO
+            # - name: ELASTIC_APM_SECRET_TOKEN
+            #   valueFrom:
+            #     secretKeyRef:
+            #       key: secret-token
+            #       name: apm-server-apm-token
+            # - name: JAVA_TOOL_OPTIONS
+            #   value: -javaagent:/elastic/apm/agent/elastic-apm-agent.jar
             - name: SPRING_DATASOURCE_URL
               valueFrom:
                 configMapKeyRef: 
@@ -72,3 +72,6 @@ spec:
                 secretKeyRef: 
                   name: postgres-secret
                   key: password
+          # volumeMounts:
+          #   - mountPath: /elastic/apm/agent
+          #     name: elastic-apm-agent
